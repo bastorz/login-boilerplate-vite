@@ -11,15 +11,19 @@ const UpdateUserPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const paramsToObject = (searchParams) => {
-      const params = Array.from(searchParams.entries()).map(([key, value]) => ({
-        [key]: value,
-      }));
+    const paramsToObject = (
+      searchParams: URLSearchParams
+    ): Record<string, string> => {
+      const params = Array.from(searchParams.entries()).map(
+        ([key, value]: [string, string]) => ({
+          [key]: value,
+        })
+      );
       return Object.assign({}, ...params);
     };
 
-    const params = paramsToObject(urlParams);
-    setCode(params.code);
+    const searchParams = new URLSearchParams(window.location.search);
+    const paramsObject = paramsToObject(searchParams);
   }, []);
 
   const resetPassword = async (code) => {

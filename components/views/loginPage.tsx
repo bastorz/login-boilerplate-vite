@@ -37,7 +37,6 @@ const LoginPage = () => {
           setError(res.error.toString().replace("AuthApiError: ", ""));
         } else {
           navigate("/");
-          return res.success;
         }
       });
   };

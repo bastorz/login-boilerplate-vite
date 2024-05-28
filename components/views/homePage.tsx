@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { supabase } from "../../utils/supabase/entities/supabaseClient";
 import { useNavigate } from "react-router-dom";
+import { User } from "@supabase/supabase-js";
 
 const HomePage = () => {
-  const [user, setUser] = useState(null); // Declarar user como null
+  const [user, setUser] = useState<User | null>(null); // Declarar user como null
   const navigate = useNavigate();
 
   useEffect(() => {

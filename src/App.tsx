@@ -1,10 +1,11 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import React from "react";
+import HomePage from "../components/views/homePage";
 import LoginPage from "../components/views/loginPage";
 import SignUpPage from "../components/views/signUpPage";
-import HomePage from "../components/views/homePage";
-import ResetPasswordPage from "../components/views/resetPassword";
+import ResetPasswordPage from "../components/views/resetPasswordPage";
 import ResetPasswordSuccessPage from "../components/views/resetPasswordSuccessPage";
-import SetNewPassword from "../components/views/setNewPassword";
+import UpdateUserPage from "../components/views/updateUserPage";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
             path="reset-password/success"
             element={<ResetPasswordSuccessPage />}
           />
-          <Route path="/update-user" element={<SetNewPassword />} />
+          <Route path="/update-user" element={<UpdateUserPage />} />
         </Routes>
       </BrowserRouter>
     </div>

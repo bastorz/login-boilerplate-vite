@@ -1,34 +1,23 @@
 import { useState } from "react";
-import { supabase } from "./supabaseClient";
-import { login } from "../utils/supabase/entities/auth/login";
+import { supabase } from "../utils/supabase/entities/supabaseClient";
+import React from "react";
 
 export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
 
-  const handleLogin = async (event) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
     const { error } = await supabase.auth.signInWithOtp({ email });
 
     if (error) {
-      alert(error.error_description || error.message);
+      alert(error.message);
     } else {
       alert("Check your email for the login link!");
     }
     setLoading(false);
-  };
-
-  const handleLogins = async () => {
-    await login({ email, password }).then((res) => {
-      if (res.error) {
-        setError("Invalid login credentials.");
-      } else {
-        router.push("/");
-        return res.success;
-      }
-    });
   };
 
   return (
@@ -37,6 +26,7 @@ export default function Auth() {
         <h1 className="header">Supabase + React</h1>
         <p className="description">
           Sign in via magic link with your email below
+          as`dlapsdlapsldapsldpalsdp holaaa`
         </p>
         <form className="form-widget" onSubmit={handleLogin}>
           <div>
