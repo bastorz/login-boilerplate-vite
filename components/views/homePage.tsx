@@ -3,6 +3,7 @@ import { useState } from "react";
 import { supabase } from "../../utils/supabase/entities/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import { User } from "@supabase/supabase-js";
+import CalendarOverview from "./calendarOverview";
 
 const HomePage = () => {
   const [user, setUser] = useState<User | null>(null); // Declarar user como null
@@ -54,6 +55,7 @@ const HomePage = () => {
       ) : (
         <></>
       )}
+      <CalendarOverview />
     </main>
   );
 };
