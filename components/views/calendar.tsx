@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import clsx from "clsx";
 import { AllEvents } from "./calendarOverview";
 
 interface CalendarProps {
@@ -104,27 +103,32 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
                     const isToday =
                       isCurrentMonth &&
                       date.toDateString() === new Date().toDateString();
+                    const classNames = `text-center h-10 w-10 py-5 ${
+                      !isCurrentMonth ? "text-gray-500" : "text-white"
+                    } ${
+                      eventsForDate?.some((event) => event.type === "event")
+                        ? "bg-green-500"
+                        : ""
+                    } ${
+                      eventsForDate?.some((event) => event.type === "classroom")
+                        ? "bg-orange-500"
+                        : ""
+                    } ${
+                      eventsForDate?.some((event) => event.type === "challenge")
+                        ? "bg-blue-500"
+                        : ""
+                    } ${
+                      !isToday && isCurrentMonth
+                        ? "bg-black hover:bg-gray-700"
+                        : ""
+                    } ${
+                      dayNumber > 0 && dayNumber <= daysInMonth
+                        ? "rounded-full"
+                        : ""
+                    }`;
+
                     return (
-                      <td
-                        key={dayIndex}
-                        className={clsx("text-center h-10 w-10 py-5", {
-                          "text-gray-500": !isCurrentMonth,
-                          "text-white": isCurrentMonth,
-                          "bg-green-500": eventsForDate?.some(
-                            (event) => event.type === "event"
-                          ),
-                          "bg-orange-500": eventsForDate?.some(
-                            (event) => event.type === "classroom"
-                          ),
-                          "bg-blue-500": eventsForDate?.some(
-                            (event) => event.type === "challenge"
-                          ),
-                          "bg-black hover:bg-gray-700":
-                            !isToday && isCurrentMonth,
-                          "rounded-full":
-                            dayNumber > 0 && dayNumber <= daysInMonth,
-                        })}
-                      >
+                      <td key={dayIndex} className={classNames.trim()}>
                         {dayNumber > 0 && dayNumber <= daysInMonth && dayNumber}
                       </td>
                     );
